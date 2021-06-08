@@ -18,14 +18,18 @@ Blog.init (
               key: 'id'
             },
           },
+          title: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+          body: {
+            type: DataTypes.TEXT,
+            allowNull: false
+          },
           date: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: Date.now()
-          },
-          message: {
-            type: DataTypes.TEXT,
-            allowNull: false
           }
     },
     {
