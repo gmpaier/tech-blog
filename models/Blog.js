@@ -29,7 +29,6 @@ Blog.init (
           date: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: Date.now()
           }
     },
     {

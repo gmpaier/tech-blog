@@ -1,0 +1,26 @@
+<h1>Tech Blog</h1>
+<br/>
+<h2>{{blog.title}}</h2>
+
+<div class="container">
+    <div class="card border-success text-dark">
+      <div class="card-header">{{blog.user}} {{blog.date}}</div>
+      <div class="card-body">
+        <p class="card-text">{{blog.body}}</p>
+        {{#if owner}}
+          <button class="btn btn-success" id="edit-btn" value={{blog.id}}>Edit</button>
+          <button class="btn btn-danger" id="del-btn" value={{blog.id}}>Delete</button>
+        {{else}}
+          <button class="btn text-dark btn-light" id="reply-btn" value={{blog.id}}>Comment</button>
+      </div>
+    </div>
+</div>
+
+{{#each comments as |comment|}}
+  <div class="card w-50 text-dark bg-light">
+    <div class="card-header">{{comment.user}} {{comment.date}}</div>
+    <div class="card-body">
+      <p class="card-text">{{comment.body}}</p>
+    </div>
+  </div>
+{{/each}}

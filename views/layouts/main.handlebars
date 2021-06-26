@@ -12,33 +12,40 @@
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Home</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
+  <ul class="nav">
+    <li class="nav-item">
+      {{#if home}}
+        <a class="nav-link active" href="/">Home</a>
+      {{else}}
+        <a class="nav-link" href="/">Home</a>
+      {{/if}} 
+    </li>
+    <li class="nav-item">
+      {{#if dash}}
+        <a class="nav-link active" href="/dashboard">Dashboard</a>
+      {{else}}
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+      {{/if}} 
+    </li>
+    <li class="nav-item">
+      {{#if login}}
+        <a class="nav-link active" href="/login">Log In</a>
+      {{else}}
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
+          <button class="nav-link" id="logout">Log Out</button>
         {{else}}
-        <a href="/login">login</a>
+          <a class="nav-link" href="/login">Log In</a>
         {{/if}}
-      </nav>
-    </header>
-    <main class="container container-fluid mt-1">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
+      {{/if}} 
+    </li>
+  </ul>
+ 
+  <main>
+    {{{ body }}}
+  </main>
 
-  <!-- Render script for logged in users only -->
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
+    <script src="/js/logout.js"></script>
   {{/if}}
 </body>
 

@@ -6,23 +6,36 @@ router.get('/', (req, res) => {
   res.redirect('/home');
 });
 
+router.get('/home', (req, res) => {
+  const blogData = await Blog.findAll();
+  const blogs = blogData.map((blog) => {
+    let modblog = blog.get({ plain: true })
+    if (modblog.body.length > 280){
+      modblog.body = modblog.body.substr(0, 279);
+      modblog.body += "...";
+      return modblog;
+    }
+  });
+  res.render('home', blogs);
+});
+
 router.get('/dashboard', withAuth, (req, res) => {
-  res.redirect('/dash');
+  res.render('/dash');
 });
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/dash');
+    res.redirect('/dashboard');
     return;
   }
   else {
-    res.redirect('/login');
+    res.render('login');
   }
 });
 
-router.get('/blog', async (req, res) => {
+router.get('/blog/:id', async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.body.blog_id);
+    const blogData = await Blog.findByPk(req.params.id);
     const blog = blogData.get({ plain: true });
     if (req.session.logged_in) {
       res.render('blog', {blog, logged_in: true});
@@ -36,3 +49,5 @@ router.get('/blog', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;

@@ -26,7 +26,14 @@ router.get("/user", withAuth, async (req, res) => {
 
 router.post("/", withAuth, async (req, res) => {
   try {
-    await Blog.create(req.body);
+    await Blog.create(
+      {
+        user_id: req.session.user_id,
+        title: req.body.title,
+        body: req.body.body,
+        date: Date.now()
+      }
+    );
     res.status(200);
   }
   catch (err) {
@@ -40,7 +47,7 @@ router.put("/:id", withAuth, async (req, res) => {
       {
         title: req.body.title,
         body: req.body.body,
-        date: Date.now(),
+        date: Date.now()
       },
       {
         where: {
@@ -70,3 +77,5 @@ router.delete("/:id", withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;
