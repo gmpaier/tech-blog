@@ -16,6 +16,16 @@
     </div>
 </div>
 
+<div id = "target-div">
+   <form class="w-50">
+    <div class="mb-3">
+      <label for="inputBody" class="form-label">Body</label>
+      <textarea type="body" class="form-control" id="inputBody" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
 {{#each comments as |comment|}}
   <div class="card w-50 text-dark bg-light">
     <div class="card-header">{{comment.user}} {{comment.date}}</div>
