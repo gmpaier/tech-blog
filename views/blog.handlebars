@@ -12,6 +12,7 @@
           <button class="btn btn-danger" id="del-btn" value={{blog.id}}>Delete</button>
         {{else}}
           <button class="btn text-dark btn-light" id="reply-btn" value={{blog.id}}>Comment</button>
+        {{/if}}
       </div>
     </div>
 </div>
@@ -34,3 +35,5 @@
     </div>
   </div>
 {{/each}}
+
+<script src="/js/blog.js"></script>
