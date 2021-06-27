@@ -37,4 +37,4 @@ function timerIncrement() {
 // $(document).ready(timeout);
 $(this).mousemove(()=>timeout("clear"));
 $(this).keypress(()=>timeout("clear"));
-document.querySelector('#logout').addEventListener('click', logout);
+$(document).on("click", "#logout", logout);

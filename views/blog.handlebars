@@ -2,28 +2,31 @@
 <br/>
 <h2>{{blog.title}}</h2>
 
-<div class="container">
+<div class="container" id="target-div">
     <div class="card border-success text-dark">
       <div class="card-header">{{blog.user}} {{blog.date}}</div>
       <div class="card-body">
         <p class="card-text">{{blog.body}}</p>
-        {{#if owner}}
-          <button class="btn btn-success" id="edit-btn" value={{blog.id}}>Edit</button>
-          <button class="btn btn-danger" id="del-btn" value={{blog.id}}>Delete</button>
-        {{else}}
-          <button class="btn text-dark btn-light" id="reply-btn" value={{blog.id}}>Comment</button>
+        {{#if logged_in}}
+          {{#if owner}}
+            <button class="btn btn-success" id="edit-btn" value={{blog.id}}>Edit</button>
+            <button class="btn btn-danger" id="del-btn" value={{blog.id}}>Delete</button>
+          {{else}}
+            <button class="btn text-dark btn-light" id="reply-btn">Comment</button>
+          {{/if}}
         {{/if}}
       </div>
     </div>
 </div>
 
-<div id = "target-div">
+<div id = "reply-div">
    <form class="w-50">
     <div class="mb-3">
       <label for="inputBody" class="form-label">Body</label>
       <textarea type="body" class="form-control" id="inputBody" rows="3"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submit-btn" value={{blog.id}}>Submit</button>
+     <button type="cancel" class="btn btn-danger" id="cancel-btn">Cancel</button>
   </form>
 </div>
 

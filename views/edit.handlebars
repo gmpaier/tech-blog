@@ -1,15 +1,16 @@
 <h2>Edit Post</h2>
+<br>
         <form>
           <div class="mb-3">
             <label for="inputTitle" class="form-label">Title</label>
-            <textarea type="title" class="form-control" id="inputTitle" rows="1"></textarea>
+            <textarea type="title" class="form-control" id="inputTitle" rows="1">{{blog.title}}</textarea>
           </div>
           <div class="mb-3">
             <label for="inputBody" class="form-label">Body</label>
-            <textarea type="body" class="form-control" id="inputBody" rows="5"></textarea>
+            <textarea type="body" class="form-control" id="inputBody" rows="5">{{blog.body}}</textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="cancel" class="btn btn-danger">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn" value={{blog.id}}>Submit</button>
+          <button type="cancel" class="btn btn-danger" id="cancel-btn" value={{blog.id}}>Cancel</button>
         </form>
 
 <script src="/js/edit.js"></script>
