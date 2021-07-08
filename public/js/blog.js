@@ -44,7 +44,7 @@ $(document).ready(function(){
   }
 
   async function postReply(){
-    const comment = $("#inputBody").text().trim();
+    const comment = $("#inputBody").val().trim();
     if (comment) {
       const response = await fetch('/api/comments', {
         method: 'POST',
@@ -52,7 +52,7 @@ $(document).ready(function(){
         headers: { 'Content-Type': 'application/json' },
       });
       if (response.ok){
-        document.location.reload();
+        window.location.href = window.location.href;
       }
       else {
         alert(response.statusText);

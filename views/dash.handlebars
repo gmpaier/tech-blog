@@ -1,4 +1,4 @@
-<h1>Welcome {{user}}!</h1>
+<h1>Welcome!</h1>
 <br/>
 
 <div class="container">
@@ -7,13 +7,13 @@
     <div class="col">
       <h2>Your Posts</h2>
         <div class="container">
-          {{#each blogs as |blog|}}
+          {{#each blogs as | blog |}}
             <div class="card text-dark bg-light">
-              <div class="card-header">{{blog.user}} {{blog.date}}</div>
+              <div class="card-header">User: {{user.username}} | {{date}}</div>
               <div class="card-body">
-                <h5 class="card-title">{{blog.title}}</h5>
-                <p class="card-text">{{blog.body}}</p>
-                <a href={{"/blog/" + blog.id}} class="btn btn-info">See Full</a>
+                <h5 class="card-title">{{title}}</h5>
+                <p class="card-text">{{body}}</p>
+                <a href={{route}} class="btn btn-info">See Full</a>
               </div>
             </div>
           {{/each}}
@@ -25,7 +25,7 @@
         <form>
           <div class="mb-3">
             <label for="inputTitle" class="form-label">Title</label>
-            <input type="title" class="form-control" id="inputTitle">
+            <textarea type="title" class="form-control" id="inputTitle" rows="1"></textarea>
           </div>
           <div class="mb-3">
             <label for="inputBody" class="form-label">Body</label>

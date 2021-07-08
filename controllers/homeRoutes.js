@@ -6,26 +6,40 @@ router.get('/', (req, res) => {
   res.redirect('/home');
 });
 
-router.get('/home', (req, res) => {
-  const blogData = await Blog.findAll();
+router.get('/home', async (req, res) => {
+  const blogData = await Blog.findAll({include: User});
   const blogs = blogData.map((blog) => {
     let modblog = blog.get({ plain: true })
+    modblog.route = "/blog/" + blog.id;
     if (modblog.body.length > 280){
       modblog.body = modblog.body.substr(0, 279);
       modblog.body += "...";
       return modblog;
     }
+    return modblog
   });
   if (req.session.logged_in){
-    res.render('home', {blogs, logged_in: true});
+    res.render('home', {blogs: blogs, logged_in: true});
   }
   else {
     res.render('home', blogs);
   }
 });
 
-router.get('/dashboard', withAuth, (req, res) => {
-  res.render('/dash', {logged_in: true});
+router.get('/dashboard', withAuth, async (req, res) => {
+  const blogData = await Blog.findAll({where: {user_id: req.session.user_id}, include: User})
+  const blogs = blogData.map((blog) => {
+    let modblog = blog.get({ plain: true })
+    console.log(modblog);
+    modblog.route = "/blog/" + blog.id;
+    if (modblog.body.length > 280){
+      modblog.body = modblog.body.substr(0, 279);
+      modblog.body += "...";
+      return modblog;
+    }
+    return modblog
+  });
+  res.render('dash', {blogs: blogs, logged_in: true});
 });
 
 router.get('/login', (req, res) => {
@@ -40,9 +54,10 @@ router.get('/login', (req, res) => {
 
 router.get('/blog/:id', async (req, res) => {
   try {
+    console.log("in individual blog");
     const blogData = await Blog.findByPk(req.params.id);
     const blog = blogData.get({ plain: true });
-
+    console.log(blog);
     let logged_in;
     let owner;
     if (req.session.logged_in){
@@ -60,14 +75,14 @@ router.get('/blog/:id', async (req, res) => {
     }
 
 
-    const commentData = await blogData.getCommments();
+    const commentData = await Comment.findAll({where: {user_id: req.session.user_id}, include: User})
+    console.log("through commentData");
     if (commentData){
       const comments = commentData.map((comment) => comment.get({ plain: true }));
-      res.render('blog', {blog, comments, logged_in});
-        return;
+      res.render('blog', {blog: blog, comments: comments, logged_in: logged_in, owner: owner});
     }
     else {
-      res.render('blog', {blog, logged_in})
+      res.render('blog', {blog: blog, logged_in: logged_in, owner: owner})
     }
     
   }

@@ -2,13 +2,13 @@
 <br/>
 
 <div class="container">
-  {{#each blogs as |blog|}}
+  {{#each blogs as | blog |}}
     <div class="card text-dark bg-light">
-      <div class="card-header">{{blog.user}} {{blog.date}}</div>
+      <div class="card-header">User: {{user.username}} | {{date}}</div>
       <div class="card-body">
-        <h5 class="card-title">{{blog.title}}</h5>
-        <p class="card-text">{{blog.body}}</p>
-        <a href={{"/blog/" + blog.id}} class="btn btn-info">See Full</a>
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text">{{body}}</p>
+        <a href={{route}} class="btn btn-info">See Full</a>
       </div>
     </div>
   {{/each}}

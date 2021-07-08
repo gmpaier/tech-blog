@@ -1,7 +1,9 @@
 async function postBlog(event) {
   event.preventDefault();
-  const title = $("#inputTitle").value().trim();
-  const body = $("#inputBody").text().trim();
+  const title = $("#inputTitle").val().trim();
+  const body = $("#inputBody").val().trim();
+  console.log(title);
+  console.log(body);
   if (title && body){
     const response = await fetch('/api/blogs', {
       method: 'POST',
