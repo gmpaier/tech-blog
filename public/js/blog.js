@@ -3,16 +3,6 @@ $(document).ready(function(){
   const reply = $("#reply-div");
   let formRendered = false;   
 
-  async function editBlog(){
-    const response = await fetch('/edit/' + this.value, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    if (!response.ok){
-      alert(response.statusText);
-    }
-  }
-
   async function delBlog(){
     const confirm = confirm("You are about to permanantly delete this blog post. Would you like to continue?");
     if (confirm === true){
@@ -63,7 +53,6 @@ $(document).ready(function(){
     }
   }
 
-  $(document).on("click", "#edit-btn", editBlog);
   $(document).on("click", "#del-btn", delBlog);
   $(document).on("click", "#reply-btn", renderForm);
   $(document).on("click", "#submit-btn", postReply);

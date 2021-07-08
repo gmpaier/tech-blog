@@ -57,6 +57,7 @@ router.get('/blog/:id', async (req, res) => {
     console.log("in individual blog");
     const blogData = await Blog.findByPk(req.params.id);
     const blog = blogData.get({ plain: true });
+    blog.route = "/edit/" + blog.id
     console.log(blog);
     let logged_in;
     let owner;
@@ -101,7 +102,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.render('edit', {blog, logged_in: true})
+    res.render('edit', {blog: blog, logged_in: true})
     
   }
   catch (err) {

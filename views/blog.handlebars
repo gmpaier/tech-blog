@@ -10,7 +10,7 @@
         {{#if logged_in}}
           {{#if owner}}
             <button class="btn text-dark btn-light" id="reply-btn">Comment</button>
-            <button class="btn btn-success" id="edit-btn" value={{blog.id}}>Edit</button>
+            <a class="btn btn-success" id="edit-btn" href={{blog.route}}>Edit</a>
             <button class="btn btn-danger" id="del-btn" value={{blog.id}}>Delete</button>
           {{else}}
             <button class="btn text-dark btn-light" id="reply-btn">Comment</button>
