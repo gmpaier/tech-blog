@@ -9,8 +9,7 @@ A wordpress like blog application. Lets users make blog posts and comment on the
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
-* [Contributing](#contributing)
-* [Tests](#tests)
+* [Deployment](#deployment)
 * [Questions](#questions)
 
 ## Installation
@@ -20,6 +19,10 @@ npm install
 ## Usage
 
 start the server with "node server" from the command line in the projects directory
+
+## Deployment
+
+see deployed link [here](https://thawing-meadow-43743.herokuapp.com/).
 
 ## License
 
