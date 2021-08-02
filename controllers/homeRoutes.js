@@ -76,7 +76,7 @@ router.get('/blog/:id', async (req, res) => {
     }
 
 
-    const commentData = await Comment.findAll({where: {user_id: req.session.user_id}, include: User})
+    const commentData = await Comment.findAll({where: {blog_id: req.params.id}, include: User})
     console.log("through commentData");
     if (commentData){
       const comments = commentData.map((comment) => comment.get({ plain: true }));
